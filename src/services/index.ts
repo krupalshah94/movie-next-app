@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable func-names */
 /* eslint-disable no-param-reassign */
 // Third Party

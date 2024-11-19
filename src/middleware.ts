@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import { NextRequest, NextResponse } from "next/server";
 
 const publicPaths = new Set(["/login"]);

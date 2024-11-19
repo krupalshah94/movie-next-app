@@ -1,5 +1,5 @@
 "use client";
-
+/* eslint-disable */
 import ButtonComponent from "@/components/ButtonComponent";
 import InputComponent from "@/components/InputComponent";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";

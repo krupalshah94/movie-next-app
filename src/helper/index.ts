@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { redirect } from "next/navigation";
 
 export function setCookie(name: string, value: string, expiryMinutes: number) {

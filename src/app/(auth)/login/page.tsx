@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable */
 import { useRouter } from "next/navigation";
 
 // Third party

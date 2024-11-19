@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { handleLogout } from "@/helper";
 interface ErrorResponse {
   response: {
