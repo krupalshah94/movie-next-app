@@ -1,17 +1,37 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Prerequisites
+Before you start, make sure you have the following software installed on your machine:
+- Node.js (v20.9.0)
+- npm (Node Package Manager)
+
+You can verify if Node.js and npm are installed by running the following commands:
+
+```bash
+node -v
+npm -v
+```
+
+## Installation
+
+1. Clone this repository:
+
+    ```bash
+    git clone git@github.com:krupalshah94/movie-next-app.git
+    cd movie-next-app
+    ```
+
+2. Install the required dependencies using npm:
+    ```bash
+    npm install
+    ```
+
 ## Getting Started
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

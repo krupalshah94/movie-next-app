@@ -1,15 +1,19 @@
 "use client";
 /* eslint-disable */
-import ButtonComponent from "@/components/ButtonComponent";
-import InputComponent from "@/components/InputComponent";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+// Third party
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Row, Col, Upload, Form } from "antd";
-import React, { useEffect, useState } from "react";
+
+// Custom components
+import ButtonComponent from "@/components/ButtonComponent";
+import InputComponent from "@/components/InputComponent";
 
 // Service
 import { useApiCall } from "@/services/useApiCall";
 import { getMovie, updateMovie, uploadImage } from "@/services/movie";
-import { useRouter } from "next/navigation";
 
 function page({ params }: any) {
   const { call } = useApiCall();
@@ -30,7 +34,7 @@ function page({ params }: any) {
     setLoading(true);
     if (selectedFile) {
       call(
-        () => uploadImage({ image: selectedFile}),
+        () => uploadImage({ image: selectedFile }),
         (response: any) => {
           handleUpdateMovie({ ...values, image: response.data.fileUrl });
         },
@@ -38,9 +42,9 @@ function page({ params }: any) {
           console.log(error);
           setLoading(false);
         }
-      )
+      );
     } else {
-      handleUpdateMovie({...values, image: imageUrl});
+      handleUpdateMovie({ ...values, image: imageUrl });
     }
   };
 
@@ -96,7 +100,7 @@ function page({ params }: any) {
             autoComplete="off"
             onFinish={(value) => handleUploadImage(value)}
           >
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Row className="mt-120" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col
                 className="gutter-row"
                 xl={14}
@@ -109,11 +113,10 @@ function page({ params }: any) {
                   <Upload
                     name="avatar"
                     className="avatar-uploader custom-uploader"
-                    listType="picture-card"
                     maxCount={1}
                     beforeUpload={() => false}
                     onChange={(info) => {
-                      setImageUrl("")
+                      setImageUrl("");
                       setSelectedFile(info.file);
                     }}
                   >
@@ -156,7 +159,11 @@ function page({ params }: any) {
                   />
 
                   <Form.Item>
-                    <ButtonComponent text="Submit" buttonType="submit" disabled={loading} />
+                    <ButtonComponent
+                      text="Submit"
+                      buttonType="submit"
+                      disabled={loading}
+                    />
                   </Form.Item>
                 </div>
               </Col>

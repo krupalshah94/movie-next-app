@@ -6,6 +6,23 @@ interface ErrorResponse {
   };
 }
 
+/**
+ * Custom hook for making API calls with error handling and logout logic.
+ *
+ * @returns {object} - An object containing the `call` function.
+ * 
+ * The `call` function is used to make an API request.
+ * @param {Function} apiCall - A function that returns a promise for the API call.
+ * @param {Function} onSuccess - A callback function to be invoked when the API call is successful.
+ * @param {Function} [onError] - An optional callback function to be invoked when the API call fails.
+ * 
+ * The `call` function handles different HTTP response statuses:
+ * - On 200, 201, 202: invokes `onSuccess` with the response.
+ * - On 400, 401, 402: invokes `onError` if provided, and performs logout.
+ * - On other errors: invokes `onError` if provided.
+ *
+ * If the API call results in no response or a 401 error, it triggers a logout.
+ */
 export const useApiCall = () => {
   const call = async (
     apiCall: () => Promise<any>,
@@ -30,6 +47,7 @@ export const useApiCall = () => {
         case 401:
         case 400:
           if (onError) onError();
+          handleLogout(false, true);
         default:
           if (onError) onError();
           break;

@@ -15,7 +15,6 @@ function page() {
   const { call } = useApiCall();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
   const [selectedFile, setSelectedFile] = useState<any>();
 
   const uploadButton = (
@@ -29,7 +28,7 @@ function page() {
     setLoading(true);
     if (selectedFile) {
       call(
-        () => uploadImage({ image: selectedFile}),
+        () => uploadImage({ image: selectedFile }),
         (response: any) => {
           handleCreateMovie({ ...values, image: response.data.fileUrl });
         },
@@ -37,7 +36,7 @@ function page() {
           console.log(error);
           setLoading(false);
         }
-      )
+      );
     } else {
       handleCreateMovie(values);
     }
@@ -74,7 +73,7 @@ function page() {
             autoComplete="off"
             onFinish={(value) => handleUploadImage(value)}
           >
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="mt-120">
               <Col
                 className="gutter-row"
                 xl={14}
@@ -94,15 +93,7 @@ function page() {
                       setSelectedFile(info.file);
                     }}
                   >
-                    {imageUrl ? (
-                      <img
-                        src={imageUrl}
-                        alt="avatar"
-                        style={{ width: "100%" }}
-                      />
-                    ) : (
-                      uploadButton
-                    )}
+                    {uploadButton}
                   </Upload>
                 </Form.Item>
               </Col>
@@ -133,7 +124,11 @@ function page() {
                   />
 
                   <Form.Item>
-                    <ButtonComponent text="Submit" buttonType="submit" disabled={loading} />
+                    <ButtonComponent
+                      text="Submit"
+                      buttonType="submit"
+                      disabled={loading}
+                    />
                   </Form.Item>
                 </div>
               </Col>

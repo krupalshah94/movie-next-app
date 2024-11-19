@@ -17,6 +17,12 @@ export const axiosInstance = axios.create({
   responseType: "json",
 });
 
+/**
+ * Set the Authorization header to be included in every request.
+ * @param {string} [token=""] - The token to be included in the Authorization header.
+ * If no token is provided, the Authorization header will be removed.
+ * @returns {void}
+ */
 function setAuthToken(token = "") {
   axiosInstance.interceptors.request.use(
     function (config) {
@@ -45,9 +51,7 @@ axiosInstance.interceptors.request.use(
       const token = getCookie("token");
       config.headers = config.headers ?? {};
       config.params = config.params || {};
-      config.headers.Authorization = token.token
-        ? `Bearer ${token.token}`
-        : "";
+      config.headers.Authorization = token.token ? `Bearer ${token.token}` : "";
       return config;
     } catch (error) {
       return config;

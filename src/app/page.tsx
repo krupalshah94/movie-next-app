@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import { Button, Row, Col, Pagination } from "antd";
 import { PlusCircleOutlined, LogoutOutlined } from "@ant-design/icons";
 
+// Helper
+import { deleteCookie } from "@/helper";
+
 // Service
 import { useApiCall } from "@/services/useApiCall";
 import { getMovies } from "@/services/movie";
@@ -15,7 +18,6 @@ import { getMovies } from "@/services/movie";
 // Image
 import MovieImg from "@/assets/images/movie.jpeg";
 import ButtonComponent from "@/components/ButtonComponent";
-import { deleteCookie } from "@/helper";
 
 export default function Home() {
   const { call } = useApiCall();
@@ -25,9 +27,9 @@ export default function Home() {
   const [total, setTotal] = useState<number>(0);
 
   const handleLogout = () => {
-    deleteCookie("token")
+    deleteCookie("token");
     router.push("/login");
-  }
+  };
 
   const handleFetchMovies = async () => {
     call(
@@ -74,7 +76,11 @@ export default function Home() {
                   onClick={handleCreateMovie}
                 />
               </h2>
-              <Button type="text" className="logoutButton" onClick={handleLogout}>
+              <Button
+                type="text"
+                className="logoutButton"
+                onClick={handleLogout}
+              >
                 Logout <LogoutOutlined />
               </Button>
             </div>
@@ -108,8 +114,13 @@ export default function Home() {
                     </Col>
                   );
                 })}
-                </Row>
-                <Pagination align="center" defaultCurrent={page} total={total} onChange={(value) => setPage(value)} />
+              </Row>
+              <Pagination
+                align="center"
+                defaultCurrent={page}
+                total={total}
+                onChange={(value) => setPage(value)}
+              />
             </div>
           </div>
         )}

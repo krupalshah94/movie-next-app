@@ -6,6 +6,11 @@ import { API_ENDPOINTS } from "@/constants";
 
 const { MOVIES } = API_ENDPOINTS;
 
+/**
+ * Fetches a list of movies from the API.
+ * @param {number} [page=1] - The page number to fetch.
+ * @returns {Promise<any>} - The response from the API.
+ */
 export const getMovies = async (page = 1) => {
   try {
     const res = await http.get(`${MOVIES.GET}?page=${page}`);
@@ -15,6 +20,11 @@ export const getMovies = async (page = 1) => {
   }
 };
 
+/**
+ * Fetches a movie by its ID from the API.
+ * @param {string} id - The movie ID to fetch.
+ * @returns {Promise<any>} - The response from the API.
+ */
 export const getMovie = async (id: string) => {
   try {
     const res = await http.get(`${MOVIES.GET_BY_ID}/${id}`);
@@ -24,6 +34,11 @@ export const getMovie = async (id: string) => {
   }
 };
 
+/**
+ * Creates a movie on the API.
+ * @param {object} data - The movie data to create.
+ * @returns {Promise<any>} - The response from the API.
+ */
 export const createMovie = async (data: any) => {
   try {
     const res = await http.post(MOVIES.CREATE, data);
@@ -33,6 +48,12 @@ export const createMovie = async (data: any) => {
   }
 };
 
+/**
+ * Updates a movie on the API.
+ * @param {string} id - The movie ID to update.
+ * @param {object} data - The movie data to update.
+ * @returns {Promise<any>} - The response from the API.
+ */
 export const updateMovie = async (id: string, data: any) => {
   try {
     const res = await http.put(`${MOVIES.UPDATE}/${id}`, data);
@@ -42,6 +63,11 @@ export const updateMovie = async (id: string, data: any) => {
   }
 };
 
+/**
+ * Uploads an image to the API.
+ * @param {object} data - The image data to upload.
+ * @returns {Promise<any>} - The response from the API.
+ */
 export const uploadImage = async (data: any) => {
   try {
     const res = await http.post(MOVIES.UPLOAD_IMAGE, data, {
